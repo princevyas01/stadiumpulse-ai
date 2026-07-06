@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply transition-colors duration-300;
+  }
+}
+
+@layer utilities {
+  .high-contrast {
+    --tw-bg-opacity: 1;
+    background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+    color: rgb(255 255 255);
+  }
+  
+  .high-contrast * {
+    border-color: #ffffff !important;
+  }
+  
+  .large-text {
+    font-size: 110%;
+  }
+}
