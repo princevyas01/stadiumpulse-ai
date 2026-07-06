@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react'
 import { MapPin, Search, ArrowRight, Loader2 } from 'lucide-react'
 import { useDebounce } from '@/hooks/useDebounce'
 
+/**
+ * WayfindingWidget
+ */
 export function WayfindingWidget() {
   const [query, setQuery] = useState('')
   const debouncedQuery = useDebounce(query, 300)

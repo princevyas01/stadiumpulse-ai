@@ -3,6 +3,9 @@
 import { useState } from 'react'
 import { AlertOctagon, Send, Loader2 } from 'lucide-react'
 
+/**
+ * IncidentAdvisorWidget
+ */
 export function IncidentAdvisorWidget() {
   const [incident, setIncident] = useState('')
   const [loading, setLoading] = useState(false)

@@ -1,6 +1,9 @@
 import { AccessToggle } from '@/components/shared/AccessToggle'
 import { Home } from 'lucide-react'
 
+/**
+ * FanLayout
+ */
 export default function FanLayout({
   children,
 }: {

@@ -1,6 +1,6 @@
 # StadiumPulse AI: 30-Second Elevator Pitch
 
-**The Problem:** Managing 80,000 fans at a World Cup stadium is a logistical nightmare. Fragmented systems leave fans lost, language barriers unresolved, and operational staff reacting too late to critical incidents.
+**The Problem:** Managing 80,000 fans at a Global Soccer Tournament stadium is a logistical nightmare. Fragmented systems leave fans lost, language barriers unresolved, and operational staff reacting too late to critical incidents.
 
 **Our Solution:** StadiumPulse AI is a unified, GenAI-powered command center. We've built two seamless portals: a Fan Portal for intuitive wayfinding, multilingual chat, and transit ETAs, and an Ops Command Center that turns raw crowd data into proactive shift briefings and incident action plans. 
 

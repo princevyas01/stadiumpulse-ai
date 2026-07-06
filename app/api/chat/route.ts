@@ -12,6 +12,9 @@ const schema = z.object({
   })).optional()
 })
 
+/**
+ * Module
+ */
 export async function POST(req: Request) {
   const ip = req.headers.get('x-forwarded-for') ?? 'anonymous'
   if (!apiLimiter.check(ip)) {
@@ -28,7 +31,7 @@ export async function POST(req: Request) {
       historyText = history.map(h => `${h.role}: ${h.content}`).join('\n') + '\n'
     }
 
-    const prompt = `You are a helpful, multilingual AI Concierge for the 2026 World Cup. 
+    const prompt = `You are a helpful, multilingual AI Concierge for the 2026 Global Soccer Tournament. 
     You must auto-detect the language of the user's message and reply in the SAME language (English, Spanish, or French).
     Keep replies brief, polite, and stadium-focused (e.g. food, tickets, rules, gates).
     

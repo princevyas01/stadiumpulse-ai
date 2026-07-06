@@ -19,11 +19,17 @@ const jetbrainsMono = JetBrains_Mono({
   variable: '--font-jetbrains-mono'
 })
 
+/**
+ * metadata
+ */
 export const metadata: Metadata = {
   title: 'StadiumPulse AI',
-  description: 'GenAI Command Center for FIFA World Cup 2026',
+  description: 'GenAI Command Center for Global Soccer Tournament 2026',
 }
 
+/**
+ * RootLayout
+ */
 export default function RootLayout({
   children,
 }: Readonly<{

@@ -14,6 +14,9 @@ function generateCrowdData() {
   }))
 }
 
+/**
+ * CrowdMapWidget
+ */
 export function CrowdMapWidget() {
   const [data, setData] = useState(generateCrowdData())
 

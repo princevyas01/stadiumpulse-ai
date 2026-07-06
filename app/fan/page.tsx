@@ -9,6 +9,9 @@ const CrowdMapWidget = dynamic(() => import('@/components/fan/CrowdMapWidget').t
   loading: () => <div className="aspect-video bg-neutral-100 animate-pulse rounded-xl" />
 })
 
+/**
+ * FanPortal
+ */
 export default function FanPortal() {
   return (
     <div className="max-w-7xl mx-auto p-4 md:p-6 space-y-6">

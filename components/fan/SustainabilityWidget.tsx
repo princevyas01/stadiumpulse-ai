@@ -3,6 +3,9 @@
 import { useState, useEffect } from 'react'
 import { Leaf, RefreshCcw } from 'lucide-react'
 
+/**
+ * SustainabilityWidget
+ */
 export function SustainabilityWidget() {
   const [stats, setStats] = useState({ waste: 85, energy: 42 })
   const [tip, setTip] = useState<string | null>(null)

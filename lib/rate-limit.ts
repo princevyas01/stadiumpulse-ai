@@ -1,3 +1,6 @@
+/**
+ * RateLimiter
+ */
 export class RateLimiter {
   private tokens: Map<string, number> = new Map()
   private lastRefill: Map<string, number> = new Map()
@@ -25,4 +28,7 @@ export class RateLimiter {
 }
 
 // Global instance to persist across API calls in development (though serverless may clear it)
+/**
+ * apiLimiter
+ */
 export const apiLimiter = new RateLimiter(10, 1) // 10 tokens, 1 per second

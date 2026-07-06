@@ -1,6 +1,9 @@
 import Link from 'next/link'
 import { ArrowRight, Users, ShieldAlert } from 'lucide-react'
 
+/**
+ * Home
+ */
 export default function Home() {
   return (
     <main id="main-content" className="min-h-screen bg-theme-light text-theme-text-primary p-4 md:p-12 flex flex-col items-center justify-center font-sans">
@@ -11,7 +14,7 @@ export default function Home() {
             StadiumPulse AI
           </h1>
           <p className="text-theme-text-secondary text-lg md:text-xl max-w-2xl mx-auto font-medium">
-            Next-generation operations and fan experience platform for the FIFA World Cup 2026™.
+            Next-generation operations and fan experience platform for the Global Soccer Tournament 2026.
           </p>
         </div>
 

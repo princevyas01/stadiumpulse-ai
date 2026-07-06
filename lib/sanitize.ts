@@ -1,3 +1,6 @@
+/**
+ * sanitizeInput
+ */
 export function sanitizeInput(input: string): string {
   if (!input) return ''
   

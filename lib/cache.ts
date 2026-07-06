@@ -38,4 +38,7 @@ export class TTLCache<T> {
   }
 }
 
+/**
+ * aiCache
+ */
 export const aiCache = new TTLCache<string>(300) // 5 minutes TTL

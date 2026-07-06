@@ -3,6 +3,9 @@
 import { useAccessibility } from './AccessibilityContext'
 import { Type, Moon, Sun, Accessibility } from 'lucide-react'
 
+/**
+ * AccessToggle
+ */
 export function AccessToggle() {
   const { highContrast, largeText, toggleHighContrast, toggleLargeText } = useAccessibility()
 

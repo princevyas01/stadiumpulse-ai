@@ -8,6 +8,9 @@ const schema = z.object({
   incident: z.string().min(1)
 })
 
+/**
+ * Module
+ */
 export async function POST(req: Request) {
   const ip = req.headers.get('x-forwarded-for') ?? 'anonymous'
   if (!apiLimiter.check(ip)) {

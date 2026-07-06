@@ -7,6 +7,9 @@ const CrowdMapWidget = dynamic(() => import('@/components/fan/CrowdMapWidget').t
   loading: () => <div className="aspect-video bg-theme-dark animate-pulse rounded-std" />
 })
 
+/**
+ * OpsPortal
+ */
 export default function OpsPortal() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

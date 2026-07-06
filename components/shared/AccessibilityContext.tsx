@@ -11,6 +11,9 @@ interface AccessibilityContextType {
 
 const AccessibilityContext = createContext<AccessibilityContextType | undefined>(undefined)
 
+/**
+ * AccessibilityProvider
+ */
 export function AccessibilityProvider({ children }: { children: React.ReactNode }) {
   const [highContrast, setHighContrast] = useState(false)
   const [largeText, setLargeText] = useState(false)
@@ -43,6 +46,9 @@ export function AccessibilityProvider({ children }: { children: React.ReactNode 
   )
 }
 
+/**
+ * useAccessibility
+ */
 export function useAccessibility() {
   const context = useContext(AccessibilityContext)
   if (!context) {

@@ -3,6 +3,9 @@
 import { useState } from 'react'
 import { Train, Clock } from 'lucide-react'
 
+/**
+ * TransitWidget
+ */
 export function TransitWidget() {
   const [loading, setLoading] = useState(false)
   const [recommendation, setRecommendation] = useState<string | null>(null)

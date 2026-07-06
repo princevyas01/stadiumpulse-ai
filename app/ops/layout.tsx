@@ -1,6 +1,9 @@
 import Link from 'next/link'
 import { Home, Shield } from 'lucide-react'
 
+/**
+ * OpsLayout
+ */
 export default function OpsLayout({
   children,
 }: {

@@ -14,6 +14,9 @@ function generateFeed(): FeedItem[] {
   ]
 }
 
+/**
+ * OperationalFeedWidget
+ */
 export function OperationalFeedWidget() {
   const [feed, setFeed] = useState<FeedItem[]>(generateFeed())
   const [briefingLoading, setBriefingLoading] = useState(false)

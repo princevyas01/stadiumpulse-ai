@@ -5,6 +5,9 @@ import { Send, Bot, Loader2, Globe } from 'lucide-react'
 
 type Message = { id: string; role: 'user' | 'assistant'; content: string }
 
+/**
+ * ChatbotWidget
+ */
 export function ChatbotWidget() {
   const [messages, setMessages] = useState<Message[]>([
     { id: '1', role: 'assistant', content: "Hello! I'm your Multilingual AI Concierge. How can I help you today? (Hola / Bonjour!)" }

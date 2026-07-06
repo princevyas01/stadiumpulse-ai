@@ -1,10 +1,10 @@
-# StadiumPulse AI — GenAI Command Center for FIFA World Cup 2026
+# StadiumPulse AI — GenAI Command Center for Global Soccer Tournament 2026
 
 ## Problem Statement
-Build a GenAI-enabled solution that enhances stadium operations and the overall tournament experience for fans, organizers, volunteers, or venue staff. The solution must leverage Generative AI to improve navigation, crowd management, accessibility, transportation, sustainability, multilingual assistance, operational intelligence, or real-time decision support during the FIFA World Cup 2026.
+Build a GenAI-enabled solution that enhances stadium operations and the overall tournament experience for fans, organizers, volunteers, or venue staff. The solution must leverage Generative AI to improve navigation, crowd management, accessibility, transportation, sustainability, multilingual assistance, operational intelligence, or real-time decision support during the Global Soccer Tournament 2026.
 
 ## Solution Overview
-**StadiumPulse AI** is a two-portal web application (Fan Portal and Ops Command Center) powered by Gemini 2.0 Flash. It addresses all 8 problem-statement pillars by delivering real-time, AI-driven insights and interactive features for the fictional World Cup 2026 host stadium (MetLife Stadium, NJ).
+**StadiumPulse AI** is a two-portal web application (Fan Portal and Ops Command Center) powered by Gemini 2.0 Flash. It addresses all 8 problem-statement pillars by delivering real-time, AI-driven insights and interactive features for the fictional Global Soccer Tournament 2026 host stadium (MetLife Stadium, NJ).
 
 | Pillar | Feature | Portal |
 |---|---|---|
@@ -49,4 +49,4 @@ graph TD
 - **Accessibility**: Covered in `tests/accessibility.test.tsx` using `jest-axe`.
 
 ## Disclaimer
-*This is a fictional concept project built for a hackathon. It is not affiliated with FIFA, the World Cup 2026, or MetLife Stadium.*
+*This is a fictional concept project built for a hackathon. It is not affiliated with FIFA, the Global Soccer Tournament 2026, or MetLife Stadium.*
