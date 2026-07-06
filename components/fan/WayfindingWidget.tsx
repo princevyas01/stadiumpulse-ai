@@ -43,39 +43,39 @@ export function WayfindingWidget() {
   }
 
   return (
-    <div className="bg-chalk-white dark:bg-black rounded-sm border-2 border-concrete-gray/20 dark:border-concrete-gray/40 p-6 shadow-sm">
-      <div className="flex items-center space-x-3 mb-6 border-b-2 border-concrete-gray/20 pb-4">
-        <div className="h-12 w-12 bg-pitch-green dark:bg-floodlight-white text-floodlight-white dark:text-pitch-green rounded-sm flex items-center justify-center border-2 border-pitch-green dark:border-floodlight-white">
+    <div className="bg-white dark:bg-theme-dark rounded-std border border-black/10 dark:border-white/10 p-6 md:p-8 shadow-soft">
+      <div className="flex items-center space-x-4 mb-8">
+        <div className="h-12 w-12 bg-theme-light dark:bg-white/5 text-theme-text-primary dark:text-theme-light rounded-std flex items-center justify-center border border-black/5 dark:border-white/5">
           <MapPin size={24} />
         </div>
         <div>
-          <h2 className="text-3xl font-display uppercase tracking-tight text-pitch-green dark:text-floodlight-white">Wayfinder</h2>
-          <p className="font-mono text-xs uppercase text-concrete-gray">Query Nav System</p>
+          <h2 className="text-xl font-sans font-semibold text-theme-text-primary dark:text-theme-light">Wayfinder</h2>
+          <p className="font-sans text-sm text-theme-text-secondary">AI Navigation Assistant</p>
         </div>
       </div>
 
-      <form onSubmit={handleSearch} className="relative mb-4">
+      <form onSubmit={handleSearch} className="relative mb-6">
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="ENTER DESTINATION (e.g. HOW DO I GET TO GATE C?)"
-          className="w-full pl-12 pr-12 py-4 bg-floodlight-white dark:bg-pitch-green border-2 border-concrete-gray/30 dark:border-concrete-gray/50 text-pitch-green dark:text-floodlight-white font-mono uppercase focus:border-signal-amber focus:ring-0 outline-none transition-colors placeholder:text-concrete-gray/60"
+          placeholder="How do I get to Gate C?"
+          className="w-full pl-12 pr-12 py-3 bg-theme-light dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-std text-theme-text-primary dark:text-theme-light font-sans focus:border-theme-accent focus:ring-1 focus:ring-theme-accent outline-none transition-colors placeholder:text-theme-text-secondary"
         />
-        <Search className="absolute left-4 top-4 text-concrete-gray" size={24} />
+        <Search className="absolute left-4 top-3.5 text-theme-text-secondary" size={20} />
         <button
           type="submit"
           disabled={loading || !query.trim()}
-          className="absolute right-2 top-2 p-2 bg-pitch-green dark:bg-floodlight-white text-floodlight-white dark:text-pitch-green hover:bg-signal-amber hover:text-pitch-green disabled:opacity-50 transition-colors"
+          className="absolute right-1.5 top-1.5 p-2 bg-theme-text-primary dark:bg-theme-light text-theme-light dark:text-theme-dark rounded-[8px] hover:bg-theme-accent hover:text-white dark:hover:bg-theme-accent disabled:opacity-50 transition-colors"
           aria-label="Get Directions"
         >
-          {loading ? <Loader2 size={20} className="animate-spin" /> : <ArrowRight size={20} />}
+          {loading ? <Loader2 size={18} className="animate-spin" /> : <ArrowRight size={18} />}
         </button>
       </form>
 
       {directions && (
-        <div className="bg-signal-amber/10 dark:bg-signal-amber/20 border-l-4 border-signal-amber p-4 text-pitch-green dark:text-floodlight-white font-sans text-lg leading-relaxed" aria-live="polite">
-          <p className="whitespace-pre-wrap font-bold">{directions}</p>
+        <div className="bg-theme-light dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-std p-5 text-theme-text-primary dark:text-theme-light font-sans text-[15px] leading-relaxed" aria-live="polite">
+          <p className="whitespace-pre-wrap">{directions}</p>
         </div>
       )}
     </div>

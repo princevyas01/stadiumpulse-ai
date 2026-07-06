@@ -60,24 +60,24 @@ export function ChatbotWidget() {
   }
 
   return (
-    <div className="bg-chalk-white dark:bg-black rounded-sm border-2 border-concrete-gray/20 dark:border-concrete-gray/40 flex flex-col h-[500px] shadow-sm">
-      <div className="p-4 border-b-2 border-concrete-gray/20 dark:border-concrete-gray/40 flex justify-between items-center bg-pitch-green text-floodlight-white">
+    <div className="bg-white dark:bg-theme-dark rounded-std border border-black/10 dark:border-white/10 flex flex-col h-[500px] shadow-soft overflow-hidden">
+      <div className="p-5 border-b border-black/10 dark:border-white/10 flex justify-between items-center bg-theme-light dark:bg-white/5">
         <div className="flex items-center space-x-3">
-          <Bot className="text-signal-amber" size={28} />
+          <Bot className="text-theme-accent" size={24} />
           <div>
-            <h2 className="font-display text-2xl uppercase tracking-wider">AI Concierge</h2>
-            <p className="font-mono text-xs text-concrete-gray flex items-center"><Globe size={12} className="mr-1" /> AUTO-TRANSLATE ACTIVE</p>
+            <h2 className="font-sans font-semibold text-lg text-theme-text-primary dark:text-theme-light">AI Concierge</h2>
+            <p className="font-sans text-xs text-theme-text-secondary flex items-center"><Globe size={12} className="mr-1" /> Auto-translate active</p>
           </div>
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto p-5 space-y-4 custom-scrollbar">
         {messages.map(msg => (
           <div key={msg.id} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-            <div className={`max-w-[80%] p-3 text-sm font-sans font-medium border-2 ${
+            <div className={`max-w-[80%] p-3 text-[15px] font-sans leading-relaxed rounded-std ${
               msg.role === 'user' 
-                ? 'bg-pitch-green text-floodlight-white border-pitch-green dark:bg-floodlight-white dark:text-pitch-green dark:border-floodlight-white' 
-                : 'bg-floodlight-white text-pitch-green border-concrete-gray/30 dark:bg-black dark:text-floodlight-white dark:border-concrete-gray/50'
+                ? 'bg-theme-text-primary text-white dark:bg-theme-light dark:text-theme-dark' 
+                : 'bg-theme-light dark:bg-white/5 border border-black/5 dark:border-white/5 text-theme-text-primary dark:text-theme-light'
             }`}>
               {msg.content}
             </div>
@@ -85,30 +85,30 @@ export function ChatbotWidget() {
         ))}
         {loading && (
           <div className="flex justify-start">
-            <div className="bg-floodlight-white dark:bg-black text-concrete-gray p-3 border-2 border-concrete-gray/30 dark:border-concrete-gray/50 flex items-center space-x-2">
+            <div className="bg-theme-light dark:bg-white/5 border border-black/5 dark:border-white/5 text-theme-text-secondary p-3 rounded-std flex items-center space-x-2">
               <Loader2 size={16} className="animate-spin" />
-              <span className="font-mono text-xs uppercase font-bold">PROCESSING...</span>
+              <span className="font-sans text-[13px] font-medium">Processing...</span>
             </div>
           </div>
         )}
         <div ref={messagesEndRef} />
       </div>
 
-      <form onSubmit={handleSubmit} className="p-4 border-t-2 border-concrete-gray/20 dark:border-concrete-gray/40 flex space-x-2 bg-floodlight-white dark:bg-pitch-green">
+      <form onSubmit={handleSubmit} className="p-4 border-t border-black/10 dark:border-white/10 flex space-x-2 bg-white dark:bg-theme-dark">
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="ENTER INQUIRY..."
-          className="flex-1 bg-chalk-white dark:bg-black dark:text-floodlight-white border-2 border-concrete-gray/30 dark:border-concrete-gray/50 px-4 py-3 font-mono uppercase focus:outline-none focus:border-signal-amber transition-colors text-sm placeholder:text-concrete-gray/60"
+          placeholder="Ask a question..."
+          className="flex-1 bg-theme-light dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-std px-4 py-2.5 font-sans text-[15px] focus:outline-none focus:border-theme-accent focus:ring-1 focus:ring-theme-accent transition-colors text-theme-text-primary dark:text-theme-light placeholder:text-theme-text-secondary"
         />
         <button
           type="submit"
           disabled={loading || !input.trim()}
-          className="bg-pitch-green dark:bg-floodlight-white text-floodlight-white dark:text-pitch-green px-4 hover:bg-signal-amber hover:text-pitch-green disabled:opacity-50 transition-colors"
+          className="bg-theme-text-primary dark:bg-theme-light text-white dark:text-theme-dark rounded-[8px] px-4 py-2 hover:bg-theme-accent dark:hover:bg-theme-accent dark:hover:text-white disabled:opacity-50 transition-colors flex items-center justify-center"
           aria-label="Send message"
         >
-          <Send size={20} className="ml-0.5" />
+          <Send size={18} />
         </button>
       </form>
     </div>

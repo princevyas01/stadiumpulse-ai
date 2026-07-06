@@ -12,20 +12,18 @@ export const ai = new GoogleGenAI(apiKey ? { apiKey } : {})
  */
 export async function generateText(prompt: string, systemInstruction?: string) {
   if (!apiKey) {
-    console.warn("GEMINI_API_KEY is not set. Returning placeholder response.")
     return "This is a placeholder response. Please set GEMINI_API_KEY to enable AI features."
   }
   
   try {
     const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-2.0-flash',
       contents: prompt,
       config: systemInstruction ? { systemInstruction } : undefined,
     })
     
     return response.text
-  } catch (e) {
-    console.error("Gemini API Error:", e)
+  } catch {
     throw new Error("Failed to generate content")
   }
 }
@@ -48,7 +46,7 @@ export async function streamText(prompt: string): Promise<ReadableStream> {
 
   try {
     const responseStream = await ai.models.generateContentStream({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-2.0-flash',
       contents: prompt,
     })
 
@@ -64,8 +62,7 @@ export async function streamText(prompt: string): Promise<ReadableStream> {
     });
 
     return stream;
-  } catch (e) {
-    console.error("Gemini Streaming Error:", e);
+  } catch {
     throw new Error("Failed to stream content");
   }
 }

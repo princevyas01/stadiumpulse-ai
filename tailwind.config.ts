@@ -9,12 +9,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'pitch-green': '#0F3D2E',
-        'floodlight-white': '#F5F4EF',
-        'concrete-gray': '#565B52',
-        'signal-amber': '#E8A33D',
-        'signal-red': '#C1442E',
-        'chalk-white': '#FFFFFF',
+        'theme-light': '#FAF9F6',
+        'theme-dark': '#14181B',
+        'theme-text-primary': '#1F2320',
+        'theme-text-secondary': '#6B6F6A',
+        'theme-accent': '#B8823A',
+        'theme-alert-amber': '#C98A3D',
+        'theme-alert-red': '#B23B2C',
+        'theme-alert-green': '#4A7A5E',
+      },
+      boxShadow: {
+        'soft': '0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04)',
+      },
+      borderRadius: {
+        'std': '10px',
       },
       fontFamily: {
         display: ['var(--font-barlow-condensed)', 'sans-serif'],

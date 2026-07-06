@@ -22,39 +22,39 @@ export function TransitWidget() {
   }
 
   return (
-    <div className="bg-chalk-white dark:bg-black rounded-sm border-2 border-concrete-gray/20 dark:border-concrete-gray/40 p-6 shadow-sm">
-      <div className="flex items-center space-x-3 mb-4 border-b-2 border-concrete-gray/20 pb-4">
-        <div className="h-12 w-12 bg-pitch-green dark:bg-floodlight-white text-floodlight-white dark:text-pitch-green rounded-sm flex items-center justify-center border-2 border-pitch-green dark:border-floodlight-white">
+    <div className="bg-white dark:bg-theme-dark rounded-std border border-black/10 dark:border-white/10 p-6 md:p-8 shadow-soft">
+      <div className="flex items-center space-x-4 mb-8">
+        <div className="h-12 w-12 bg-theme-light dark:bg-white/5 text-theme-text-primary dark:text-theme-light rounded-std flex items-center justify-center border border-black/5 dark:border-white/5">
           <Train size={24} />
         </div>
         <div>
-          <h2 className="text-3xl font-display uppercase tracking-tight text-pitch-green dark:text-floodlight-white">Transit ETA</h2>
-          <p className="font-mono text-xs uppercase text-concrete-gray">Live Departure Board</p>
+          <h2 className="text-xl font-sans font-semibold text-theme-text-primary dark:text-theme-light">Transit ETA</h2>
+          <p className="font-sans text-sm text-theme-text-secondary">Live Departure Board</p>
         </div>
       </div>
 
-      <div className="space-y-4">
-        <div className="flex justify-between items-center p-3 bg-floodlight-white dark:bg-pitch-green border-2 border-concrete-gray/30 dark:border-concrete-gray/50">
-          <span className="font-sans font-bold text-pitch-green dark:text-floodlight-white uppercase">NJ Transit</span>
-          <span className="font-mono text-signal-amber font-bold text-xl">14 MIN</span>
+      <div className="space-y-3">
+        <div className="flex justify-between items-center p-4 bg-theme-light dark:bg-white/5 border border-black/5 dark:border-white/5 rounded-std">
+          <span className="font-sans font-medium text-theme-text-primary dark:text-theme-light">NJ Transit</span>
+          <span className="font-sans text-theme-alert-amber font-semibold">14 min</span>
         </div>
-        <div className="flex justify-between items-center p-3 bg-floodlight-white dark:bg-pitch-green border-2 border-concrete-gray/30 dark:border-concrete-gray/50">
-          <span className="font-sans font-bold text-pitch-green dark:text-floodlight-white uppercase">Lot J Shuttle</span>
-          <span className="font-mono text-signal-red font-bold text-xl animate-pulse-alert motion-reduce:animate-none">04 MIN</span>
+        <div className="flex justify-between items-center p-4 bg-theme-light dark:bg-white/5 border border-black/5 dark:border-white/5 rounded-std">
+          <span className="font-sans font-medium text-theme-text-primary dark:text-theme-light">Lot J Shuttle</span>
+          <span className="font-sans text-theme-alert-red font-semibold animate-pulse-alert motion-reduce:animate-none">4 min</span>
         </div>
 
         <button
           onClick={getRecommendation}
           disabled={loading}
-          className="w-full flex items-center justify-center space-x-2 py-3 bg-pitch-green dark:bg-floodlight-white text-floodlight-white dark:text-pitch-green hover:bg-signal-amber hover:text-pitch-green transition-colors disabled:opacity-50 font-display text-xl uppercase tracking-wider"
+          className="w-full mt-4 flex items-center justify-center space-x-2 py-3 bg-theme-text-primary dark:bg-theme-light text-theme-light dark:text-theme-dark rounded-std hover:bg-theme-accent hover:text-white dark:hover:bg-theme-accent transition-colors disabled:opacity-50 font-sans font-medium text-[15px]"
         >
-          <Clock size={20} />
-          <span>{loading ? 'CALCULATING...' : 'AI ADVISOR'}</span>
+          <Clock size={18} />
+          <span>{loading ? 'Calculating...' : 'AI Advisor'}</span>
         </button>
 
         {recommendation && (
-          <div className="p-4 bg-signal-amber/10 border-l-4 border-signal-amber text-pitch-green dark:text-floodlight-white text-sm" aria-live="polite">
-            <p className="font-sans font-bold whitespace-pre-wrap">{recommendation}</p>
+          <div className="mt-4 p-5 bg-theme-light dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-std text-theme-text-primary dark:text-theme-light text-[15px]" aria-live="polite">
+            <p className="font-sans leading-relaxed whitespace-pre-wrap">{recommendation}</p>
           </div>
         )}
       </div>

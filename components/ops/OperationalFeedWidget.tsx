@@ -45,46 +45,44 @@ export function OperationalFeedWidget() {
   }
 
   return (
-    <div className="bg-pitch-green border-2 border-concrete-gray/30 p-6 h-full flex flex-col shadow-2xl">
-      <div className="flex items-center justify-between mb-6 border-b-2 border-concrete-gray/30 pb-4">
-        <div className="flex items-center space-x-3">
-          <div className="h-12 w-12 bg-signal-amber text-pitch-green flex items-center justify-center border-2 border-pitch-green">
-            <RadioReceiver size={24} />
-          </div>
-          <div>
-            <h2 className="text-3xl font-display uppercase tracking-wider text-floodlight-white">Live Feed</h2>
-            <p className="font-mono text-xs uppercase text-concrete-gray">Operational Intelligence</p>
-          </div>
+    <div className="bg-white dark:bg-theme-dark rounded-std border border-black/10 dark:border-white/10 p-6 md:p-8 h-full flex flex-col shadow-soft">
+      <div className="flex items-center space-x-4 mb-8">
+        <div className="h-12 w-12 bg-theme-alert-amber/10 text-theme-alert-amber flex items-center justify-center rounded-std border border-theme-alert-amber/20">
+          <RadioReceiver size={24} />
+        </div>
+        <div>
+          <h2 className="text-xl font-sans font-semibold text-theme-text-primary dark:text-theme-light">Live Feed</h2>
+          <p className="font-sans text-sm text-theme-text-secondary">Operational Intelligence</p>
         </div>
       </div>
 
-      <div className="mb-6">
+      <div className="mb-8">
         <button
           onClick={getBriefing}
           disabled={briefingLoading}
-          className="w-full py-3 bg-black hover:bg-black/70 text-signal-amber font-display text-xl uppercase tracking-wider border-2 border-concrete-gray/50 transition-colors flex justify-center items-center"
+          className="w-full py-3 bg-theme-text-primary dark:bg-theme-light text-white dark:text-theme-dark rounded-std hover:bg-theme-accent dark:hover:bg-theme-accent dark:hover:text-white transition-colors flex justify-center items-center font-sans font-medium text-[15px] disabled:opacity-50"
         >
-          {briefingLoading ? 'GENERATING...' : 'GENERATE SHIFT BRIEFING'}
+          {briefingLoading ? 'Generating...' : 'Generate Shift Briefing'}
         </button>
         {briefing && (
-          <div className="mt-3 p-3 bg-signal-amber/10 border-l-4 border-signal-amber text-sm text-floodlight-white font-sans font-bold" aria-live="polite">
-            <h3 className="font-mono text-signal-amber mb-1 uppercase tracking-widest text-xs">AI Briefing</h3>
-            <p>{briefing}</p>
+          <div className="mt-4 p-5 bg-theme-alert-amber/5 border border-theme-alert-amber/20 rounded-std text-[15px] text-theme-text-primary dark:text-theme-light font-sans" aria-live="polite">
+            <h3 className="font-sans text-xs font-semibold text-theme-alert-amber mb-2 uppercase tracking-wide">AI Briefing</h3>
+            <p className="leading-relaxed">{briefing}</p>
           </div>
         )}
       </div>
 
-      <div className="flex-1 overflow-y-auto space-y-3 pr-2 custom-scrollbar">
+      <div className="flex-1 overflow-y-auto space-y-4 pr-2 custom-scrollbar">
         {feed.map(item => (
-          <div key={item.id} className="p-3 bg-black border-2 border-concrete-gray/30 flex items-start space-x-3">
+          <div key={item.id} className="p-4 bg-theme-light dark:bg-white/5 border border-black/5 dark:border-white/5 rounded-std flex items-start space-x-4">
             <div className="mt-0.5">
-              {item.type === 'alert' && <AlertTriangle size={16} className="text-signal-red" />}
-              {item.type === 'resolved' && <CheckCircle size={16} className="text-concrete-gray" />}
-              {item.type === 'info' && <Info size={16} className="text-signal-amber" />}
+              {item.type === 'alert' && <AlertTriangle size={18} className="text-theme-alert-red" />}
+              {item.type === 'resolved' && <CheckCircle size={18} className="text-theme-alert-green" />}
+              {item.type === 'info' && <Info size={18} className="text-theme-alert-amber" />}
             </div>
             <div className="flex-1">
-              <p className="font-sans text-floodlight-white font-medium text-sm">{item.message}</p>
-              <p className="font-mono text-xs text-concrete-gray mt-1 font-bold">{item.time}</p>
+              <p className="font-sans text-[15px] text-theme-text-primary dark:text-theme-light font-medium">{item.message}</p>
+              <p className="font-sans text-xs text-theme-text-secondary mt-1.5 font-medium">{item.time}</p>
             </div>
           </div>
         ))}
