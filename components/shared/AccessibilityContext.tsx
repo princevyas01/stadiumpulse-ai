@@ -15,18 +15,30 @@ export function AccessibilityProvider({ children }: { children: React.ReactNode 
   const [highContrast, setHighContrast] = useState(false)
   const [largeText, setLargeText] = useState(false)
 
-  // Avoid hydration mismatch by waiting for mount
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
-
+  // Handle high contrast (dark mode) on HTML element
   const toggleHighContrast = () => setHighContrast(prev => !prev)
   const toggleLargeText = () => setLargeText(prev => !prev)
 
+  useEffect(() => {
+    if (highContrast) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [highContrast])
+
+  // Handle large text on HTML element
+  useEffect(() => {
+    if (largeText) {
+      document.documentElement.classList.add('large-text')
+    } else {
+      document.documentElement.classList.remove('large-text')
+    }
+  }, [largeText])
+
   return (
     <AccessibilityContext.Provider value={{ highContrast, largeText, toggleHighContrast, toggleLargeText }}>
-      <div className={`${highContrast ? 'high-contrast' : ''} ${largeText ? 'large-text' : ''}`}>
-        {mounted ? children : null}
-      </div>
+      {children}
     </AccessibilityContext.Provider>
   )
 }

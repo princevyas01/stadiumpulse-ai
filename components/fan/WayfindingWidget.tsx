@@ -43,14 +43,14 @@ export function WayfindingWidget() {
   }
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-neutral-100 p-6">
-      <div className="flex items-center space-x-3 mb-6">
-        <div className="h-10 w-10 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center">
-          <MapPin size={20} />
+    <div className="bg-chalk-white dark:bg-black rounded-sm border-2 border-concrete-gray/20 dark:border-concrete-gray/40 p-6 shadow-sm">
+      <div className="flex items-center space-x-3 mb-6 border-b-2 border-concrete-gray/20 pb-4">
+        <div className="h-12 w-12 bg-pitch-green dark:bg-floodlight-white text-floodlight-white dark:text-pitch-green rounded-sm flex items-center justify-center border-2 border-pitch-green dark:border-floodlight-white">
+          <MapPin size={24} />
         </div>
         <div>
-          <h2 className="text-xl font-bold text-neutral-800">AI Wayfinding</h2>
-          <p className="text-sm text-neutral-500">Ask for directions in plain English</p>
+          <h2 className="text-3xl font-display uppercase tracking-tight text-pitch-green dark:text-floodlight-white">Wayfinder</h2>
+          <p className="font-mono text-xs uppercase text-concrete-gray">Query Nav System</p>
         </div>
       </div>
 
@@ -59,23 +59,23 @@ export function WayfindingWidget() {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="e.g. How do I get to Gate C from Section 120?"
-          className="w-full pl-10 pr-12 py-3 rounded-lg border border-neutral-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all"
+          placeholder="ENTER DESTINATION (e.g. HOW DO I GET TO GATE C?)"
+          className="w-full pl-12 pr-12 py-4 bg-floodlight-white dark:bg-pitch-green border-2 border-concrete-gray/30 dark:border-concrete-gray/50 text-pitch-green dark:text-floodlight-white font-mono uppercase focus:border-signal-amber focus:ring-0 outline-none transition-colors placeholder:text-concrete-gray/60"
         />
-        <Search className="absolute left-3 top-3.5 text-neutral-400" size={20} />
+        <Search className="absolute left-4 top-4 text-concrete-gray" size={24} />
         <button
           type="submit"
           disabled={loading || !query.trim()}
-          className="absolute right-2 top-2 p-1.5 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 transition-colors"
+          className="absolute right-2 top-2 p-2 bg-pitch-green dark:bg-floodlight-white text-floodlight-white dark:text-pitch-green hover:bg-signal-amber hover:text-pitch-green disabled:opacity-50 transition-colors"
           aria-label="Get Directions"
         >
-          {loading ? <Loader2 size={18} className="animate-spin" /> : <ArrowRight size={18} />}
+          {loading ? <Loader2 size={20} className="animate-spin" /> : <ArrowRight size={20} />}
         </button>
       </form>
 
       {directions && (
-        <div className="bg-neutral-50 rounded-lg p-4 text-neutral-700 text-sm leading-relaxed border border-neutral-100" aria-live="polite">
-          <p className="whitespace-pre-wrap">{directions}</p>
+        <div className="bg-signal-amber/10 dark:bg-signal-amber/20 border-l-4 border-signal-amber p-4 text-pitch-green dark:text-floodlight-white font-sans text-lg leading-relaxed" aria-live="polite">
+          <p className="whitespace-pre-wrap font-bold">{directions}</p>
         </div>
       )}
     </div>

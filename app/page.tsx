@@ -1,57 +1,72 @@
 import Link from 'next/link'
-import { ArrowRight, Users, ShieldAlert } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 export default function Home() {
   return (
-    <main id="main-content" className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-neutral-50 to-neutral-200 p-6">
-      <div className="max-w-3xl w-full text-center space-y-8">
-        <div className="space-y-4">
-          <h1 className="text-5xl font-extrabold tracking-tight text-neutral-900">
-            StadiumPulse <span className="text-blue-600">AI</span>
-          </h1>
-          <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
-            The next-generation, AI-driven operations and fan experience platform for the FIFA World Cup 2026™*.
-          </p>
-        </div>
+    <main id="main-content" className="min-h-screen bg-floodlight-white text-pitch-green p-4 md:p-8 flex flex-col items-center justify-center">
+      <div className="w-full max-w-4xl border-4 border-pitch-green p-1 md:p-2 bg-pitch-green shadow-2xl">
+        <div className="bg-floodlight-white border-4 border-pitch-green p-8 md:p-12 relative overflow-hidden">
+          
+          {/* Decorative pitch line markings */}
+          <div className="absolute top-0 right-0 w-32 h-32 border-b-4 border-l-4 border-pitch-green/10 rounded-bl-full" aria-hidden="true" />
+          <div className="absolute bottom-0 left-0 w-full h-4 border-t-4 border-pitch-green/10" aria-hidden="true" />
 
-        <div className="grid md:grid-cols-2 gap-6 pt-8">
-          <Link 
-            href="/fan"
-            className="group relative flex flex-col items-center p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-neutral-100 hover:border-blue-100"
-          >
-            <div className="h-16 w-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-              <Users size={32} />
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 border-b-8 border-pitch-green pb-8">
+            <div>
+              <div className="bg-signal-red text-chalk-white font-display text-xl px-4 py-1 inline-block rounded-full mb-4 uppercase tracking-wider">
+                System Active
+              </div>
+              <h1 className="font-display text-7xl md:text-8xl leading-none uppercase tracking-tighter text-pitch-green">
+                Command <br />
+                <span className="text-concrete-gray">Center</span>
+              </h1>
             </div>
-            <h2 className="text-2xl font-bold text-neutral-800 mb-2">Fan Portal</h2>
-            <p className="text-neutral-500 mb-6 flex-1 text-sm">
-              Features: AI Wayfinding, Crowd Density Map, Accessibility Mode, ETA Assistant, Eco Tips, & Multilingual Chatbot.
-            </p>
-            <div className="flex items-center text-blue-600 font-semibold group-hover:translate-x-2 transition-transform">
-              Enter Portal <ArrowRight className="ml-2 h-4 w-4" />
+            <div className="mt-8 md:mt-0 text-right">
+              <p className="font-mono text-concrete-gray text-lg font-bold">2026 WORLD CUP</p>
+              <p className="font-mono text-signal-amber text-xl font-bold bg-pitch-green px-2 py-1 mt-2 inline-block">LIVE METRICS ENABLED</p>
             </div>
-          </Link>
+          </div>
 
-          <Link 
-            href="/ops"
-            className="group relative flex flex-col items-center p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-neutral-100 hover:border-indigo-100"
-          >
-            <div className="h-16 w-16 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-              <ShieldAlert size={32} />
-            </div>
-            <h2 className="text-2xl font-bold text-neutral-800 mb-2">Ops Command</h2>
-            <p className="text-neutral-500 mb-6 flex-1 text-sm">
-              Features: Live Crowd Map, Operational Intelligence Feed, Sustainability Dash, & AI Incident Advisor.
-            </p>
-            <div className="flex items-center text-indigo-600 font-semibold group-hover:translate-x-2 transition-transform">
-              Open Command Center <ArrowRight className="ml-2 h-4 w-4" />
-            </div>
-          </Link>
+          <div className="grid md:grid-cols-2 gap-8">
+            <Link 
+              href="/fan"
+              className="group border-2 border-pitch-green bg-floodlight-white p-6 hover:bg-signal-amber transition-colors flex flex-col justify-between min-h-[200px]"
+            >
+              <div className="flex justify-between items-start mb-8">
+                <div className="bg-pitch-green text-floodlight-white font-display text-4xl px-4 py-2 rounded-full">
+                  F1
+                </div>
+                <ArrowRight size={32} className="text-pitch-green transform group-hover:translate-x-2 transition-transform" />
+              </div>
+              <div>
+                <h2 className="font-display text-3xl uppercase tracking-tight text-pitch-green mb-1">Fan Portal</h2>
+                <p className="font-sans text-concrete-gray font-medium group-hover:text-pitch-green">Wayfinding • Shuttles • Eco Tips</p>
+              </div>
+            </Link>
+
+            <Link 
+              href="/ops"
+              className="group border-2 border-pitch-green bg-pitch-green text-floodlight-white p-6 hover:bg-signal-red transition-colors flex flex-col justify-between min-h-[200px]"
+            >
+              <div className="flex justify-between items-start mb-8">
+                <div className="bg-floodlight-white text-pitch-green font-display text-4xl px-4 py-2 rounded-full">
+                  O1
+                </div>
+                <ArrowRight size={32} className="text-floodlight-white transform group-hover:translate-x-2 transition-transform" />
+              </div>
+              <div>
+                <h2 className="font-display text-3xl uppercase tracking-tight text-floodlight-white mb-1">Ops Command</h2>
+                <p className="font-mono text-concrete-gray group-hover:text-floodlight-white">RESTRICTED ACCESS • STAFF ONLY</p>
+              </div>
+            </Link>
+          </div>
+          
         </div>
-        
-        <footer className="pt-12 text-xs text-neutral-400">
-          * This is a fictional concept project for a hackathon and is not affiliated with FIFA or the official World Cup 2026.
-        </footer>
       </div>
+      
+      <footer className="mt-12 text-sm font-mono text-concrete-gray text-center max-w-2xl">
+        * NON-AFFILIATED CONCEPT DEMO. NOT ASSOCIATED WITH FIFA.
+      </footer>
     </main>
   )
 }

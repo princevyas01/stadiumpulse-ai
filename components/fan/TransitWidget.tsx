@@ -22,39 +22,39 @@ export function TransitWidget() {
   }
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-neutral-100 p-6">
-      <div className="flex items-center space-x-3 mb-4">
-        <div className="h-10 w-10 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center">
-          <Train size={20} />
+    <div className="bg-chalk-white dark:bg-black rounded-sm border-2 border-concrete-gray/20 dark:border-concrete-gray/40 p-6 shadow-sm">
+      <div className="flex items-center space-x-3 mb-4 border-b-2 border-concrete-gray/20 pb-4">
+        <div className="h-12 w-12 bg-pitch-green dark:bg-floodlight-white text-floodlight-white dark:text-pitch-green rounded-sm flex items-center justify-center border-2 border-pitch-green dark:border-floodlight-white">
+          <Train size={24} />
         </div>
         <div>
-          <h2 className="text-xl font-bold text-neutral-800">Transit ETA</h2>
-          <p className="text-sm text-neutral-500">Plan your departure</p>
+          <h2 className="text-3xl font-display uppercase tracking-tight text-pitch-green dark:text-floodlight-white">Transit ETA</h2>
+          <p className="font-mono text-xs uppercase text-concrete-gray">Live Departure Board</p>
         </div>
       </div>
 
       <div className="space-y-4">
-        <div className="flex justify-between items-center p-3 bg-neutral-50 rounded-lg border border-neutral-100">
-          <span className="font-medium text-neutral-700">NJ Transit to Penn Station</span>
-          <span className="text-emerald-600 font-bold">14 min</span>
+        <div className="flex justify-between items-center p-3 bg-floodlight-white dark:bg-pitch-green border-2 border-concrete-gray/30 dark:border-concrete-gray/50">
+          <span className="font-sans font-bold text-pitch-green dark:text-floodlight-white uppercase">NJ Transit</span>
+          <span className="font-mono text-signal-amber font-bold text-xl">14 MIN</span>
         </div>
-        <div className="flex justify-between items-center p-3 bg-neutral-50 rounded-lg border border-neutral-100">
-          <span className="font-medium text-neutral-700">Lot J Shuttle</span>
-          <span className="text-emerald-600 font-bold">4 min</span>
+        <div className="flex justify-between items-center p-3 bg-floodlight-white dark:bg-pitch-green border-2 border-concrete-gray/30 dark:border-concrete-gray/50">
+          <span className="font-sans font-bold text-pitch-green dark:text-floodlight-white uppercase">Lot J Shuttle</span>
+          <span className="font-mono text-signal-red font-bold text-xl animate-pulse-alert motion-reduce:animate-none">04 MIN</span>
         </div>
 
         <button
           onClick={getRecommendation}
           disabled={loading}
-          className="w-full flex items-center justify-center space-x-2 py-2.5 bg-neutral-900 text-white rounded-lg hover:bg-neutral-800 transition-colors disabled:opacity-50"
+          className="w-full flex items-center justify-center space-x-2 py-3 bg-pitch-green dark:bg-floodlight-white text-floodlight-white dark:text-pitch-green hover:bg-signal-amber hover:text-pitch-green transition-colors disabled:opacity-50 font-display text-xl uppercase tracking-wider"
         >
-          <Clock size={18} />
-          <span>{loading ? 'Calculating...' : 'Get AI Departure Advice'}</span>
+          <Clock size={20} />
+          <span>{loading ? 'CALCULATING...' : 'AI ADVISOR'}</span>
         </button>
 
         {recommendation && (
-          <div className="p-4 bg-emerald-50 text-emerald-800 rounded-lg text-sm border border-emerald-100" aria-live="polite">
-            <p className="font-medium whitespace-pre-wrap">{recommendation}</p>
+          <div className="p-4 bg-signal-amber/10 border-l-4 border-signal-amber text-pitch-green dark:text-floodlight-white text-sm" aria-live="polite">
+            <p className="font-sans font-bold whitespace-pre-wrap">{recommendation}</p>
           </div>
         )}
       </div>

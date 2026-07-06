@@ -33,14 +33,14 @@ export function IncidentAdvisorWidget() {
   }
 
   return (
-    <div className="bg-slate-900 rounded-xl shadow-lg border border-slate-700 p-6">
-      <div className="flex items-center space-x-3 mb-6">
-        <div className="h-10 w-10 bg-rose-900/30 text-rose-400 rounded-full flex items-center justify-center">
-          <AlertOctagon size={20} />
+    <div className="bg-pitch-green border-2 border-concrete-gray/30 p-6 shadow-2xl">
+      <div className="flex items-center space-x-3 mb-6 border-b-2 border-concrete-gray/30 pb-4">
+        <div className="h-12 w-12 bg-signal-red text-chalk-white flex items-center justify-center border-2 border-pitch-green">
+          <AlertOctagon size={24} />
         </div>
         <div>
-          <h2 className="text-xl font-bold text-slate-100">AI Incident Advisor</h2>
-          <p className="text-sm text-slate-400">Describe the situation for immediate SOPs</p>
+          <h2 className="text-3xl font-display uppercase tracking-wider text-floodlight-white">Incident Advisor</h2>
+          <p className="font-mono text-xs uppercase text-signal-amber">Immediate SOP Generator</p>
         </div>
       </div>
 
@@ -48,36 +48,36 @@ export function IncidentAdvisorWidget() {
         <textarea
           value={incident}
           onChange={(e) => setIncident(e.target.value)}
-          placeholder="e.g. Unattended bag found near Section 112, row G..."
-          className="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 resize-none h-24 mb-3"
+          placeholder="LOG INCIDENT (e.g. UNATTENDED BAG SEC 112)..."
+          className="w-full bg-black border-2 border-concrete-gray/50 p-4 text-floodlight-white font-mono uppercase placeholder:text-concrete-gray/50 focus:outline-none focus:border-signal-red focus:ring-0 resize-none h-24 mb-3"
           aria-label="Incident Description"
         />
         <button
           type="submit"
           disabled={loading || !incident.trim()}
-          className="w-full flex items-center justify-center space-x-2 py-2.5 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors disabled:opacity-50"
+          className="w-full flex items-center justify-center space-x-2 py-3 bg-signal-red text-chalk-white hover:bg-signal-red/80 transition-colors disabled:opacity-50 font-display text-xl uppercase tracking-wider"
         >
-          {loading ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
-          <span>Get Action Plan</span>
+          {loading ? <Loader2 size={20} className="animate-spin" /> : <Send size={20} />}
+          <span>Generate Action Plan</span>
         </button>
       </form>
 
       {response && (
-        <div className="bg-slate-950 rounded-lg p-4 border border-slate-800" aria-live="polite">
+        <div className="bg-black p-4 border-2 border-concrete-gray/30" aria-live="polite">
           <div className="mb-4">
-            <h3 className="text-sm font-bold text-indigo-400 mb-2 uppercase tracking-wider">Action Checklist</h3>
-            <ul className="space-y-2">
+            <h3 className="font-mono text-sm font-bold text-signal-amber mb-3 uppercase tracking-widest">Action Checklist</h3>
+            <ul className="space-y-3">
               {response.checklist.map((item, i) => (
                 <li key={i} className="flex items-start">
-                  <div className="h-5 w-5 rounded bg-slate-800 border border-slate-600 flex-shrink-0 mr-3 mt-0.5"></div>
-                  <span className="text-sm text-slate-300">{item}</span>
+                  <div className="h-5 w-5 bg-pitch-green border-2 border-signal-amber flex-shrink-0 mr-3 mt-0.5"></div>
+                  <span className="font-sans text-floodlight-white font-medium">{item}</span>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="p-3 bg-rose-950/30 border border-rose-900/50 rounded-lg">
-             <h3 className="text-xs font-bold text-rose-500 uppercase tracking-wider mb-1">Escalation Recommendation</h3>
-             <p className="text-sm text-rose-200 font-medium">{response.escalation}</p>
+          <div className="p-3 bg-signal-red/10 border-l-4 border-signal-red">
+             <h3 className="font-mono text-xs font-bold text-signal-red uppercase tracking-widest mb-1">Escalation Rec</h3>
+             <p className="font-sans text-floodlight-white font-bold">{response.escalation}</p>
           </div>
         </div>
       )}

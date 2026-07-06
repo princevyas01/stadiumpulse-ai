@@ -60,13 +60,13 @@ export function ChatbotWidget() {
   }
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-neutral-100 flex flex-col h-[500px]">
-      <div className="p-4 border-b border-neutral-100 flex justify-between items-center bg-blue-50 rounded-t-xl">
+    <div className="bg-chalk-white dark:bg-black rounded-sm border-2 border-concrete-gray/20 dark:border-concrete-gray/40 flex flex-col h-[500px] shadow-sm">
+      <div className="p-4 border-b-2 border-concrete-gray/20 dark:border-concrete-gray/40 flex justify-between items-center bg-pitch-green text-floodlight-white">
         <div className="flex items-center space-x-3">
-          <Bot className="text-blue-600" size={24} />
+          <Bot className="text-signal-amber" size={28} />
           <div>
-            <h2 className="font-bold text-blue-900">AI Concierge</h2>
-            <p className="text-xs text-blue-600 flex items-center"><Globe size={12} className="mr-1" /> Auto-translates EN/ES/FR</p>
+            <h2 className="font-display text-2xl uppercase tracking-wider">AI Concierge</h2>
+            <p className="font-mono text-xs text-concrete-gray flex items-center"><Globe size={12} className="mr-1" /> AUTO-TRANSLATE ACTIVE</p>
           </div>
         </div>
       </div>
@@ -74,10 +74,10 @@ export function ChatbotWidget() {
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.map(msg => (
           <div key={msg.id} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-            <div className={`max-w-[80%] p-3 rounded-2xl text-sm ${
+            <div className={`max-w-[80%] p-3 text-sm font-sans font-medium border-2 ${
               msg.role === 'user' 
-                ? 'bg-blue-600 text-white rounded-br-none' 
-                : 'bg-neutral-100 text-neutral-800 rounded-bl-none'
+                ? 'bg-pitch-green text-floodlight-white border-pitch-green dark:bg-floodlight-white dark:text-pitch-green dark:border-floodlight-white' 
+                : 'bg-floodlight-white text-pitch-green border-concrete-gray/30 dark:bg-black dark:text-floodlight-white dark:border-concrete-gray/50'
             }`}>
               {msg.content}
             </div>
@@ -85,30 +85,30 @@ export function ChatbotWidget() {
         ))}
         {loading && (
           <div className="flex justify-start">
-            <div className="bg-neutral-100 text-neutral-500 p-3 rounded-2xl rounded-bl-none flex items-center space-x-2">
+            <div className="bg-floodlight-white dark:bg-black text-concrete-gray p-3 border-2 border-concrete-gray/30 dark:border-concrete-gray/50 flex items-center space-x-2">
               <Loader2 size={16} className="animate-spin" />
-              <span className="text-xs font-medium">Typing...</span>
+              <span className="font-mono text-xs uppercase font-bold">PROCESSING...</span>
             </div>
           </div>
         )}
         <div ref={messagesEndRef} />
       </div>
 
-      <form onSubmit={handleSubmit} className="p-4 border-t border-neutral-100 flex space-x-2">
+      <form onSubmit={handleSubmit} className="p-4 border-t-2 border-concrete-gray/20 dark:border-concrete-gray/40 flex space-x-2 bg-floodlight-white dark:bg-pitch-green">
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Type your question..."
-          className="flex-1 bg-neutral-50 border border-neutral-200 rounded-full px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-sm"
+          placeholder="ENTER INQUIRY..."
+          className="flex-1 bg-chalk-white dark:bg-black dark:text-floodlight-white border-2 border-concrete-gray/30 dark:border-concrete-gray/50 px-4 py-3 font-mono uppercase focus:outline-none focus:border-signal-amber transition-colors text-sm placeholder:text-concrete-gray/60"
         />
         <button
           type="submit"
           disabled={loading || !input.trim()}
-          className="bg-blue-600 text-white p-2.5 rounded-full hover:bg-blue-700 disabled:opacity-50 transition-colors"
+          className="bg-pitch-green dark:bg-floodlight-white text-floodlight-white dark:text-pitch-green px-4 hover:bg-signal-amber hover:text-pitch-green disabled:opacity-50 transition-colors"
           aria-label="Send message"
         >
-          <Send size={18} className="ml-0.5" />
+          <Send size={20} className="ml-0.5" />
         </button>
       </form>
     </div>

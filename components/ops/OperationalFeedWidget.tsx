@@ -45,15 +45,15 @@ export function OperationalFeedWidget() {
   }
 
   return (
-    <div className="bg-slate-900 rounded-xl shadow-lg border border-slate-700 p-6 h-full flex flex-col">
-      <div className="flex items-center justify-between mb-6">
+    <div className="bg-pitch-green border-2 border-concrete-gray/30 p-6 h-full flex flex-col shadow-2xl">
+      <div className="flex items-center justify-between mb-6 border-b-2 border-concrete-gray/30 pb-4">
         <div className="flex items-center space-x-3">
-          <div className="h-10 w-10 bg-cyan-900/30 text-cyan-400 rounded-full flex items-center justify-center">
-            <RadioReceiver size={20} />
+          <div className="h-12 w-12 bg-signal-amber text-pitch-green flex items-center justify-center border-2 border-pitch-green">
+            <RadioReceiver size={24} />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-slate-100">Live Feed</h2>
-            <p className="text-sm text-slate-400">Operational Intelligence</p>
+            <h2 className="text-3xl font-display uppercase tracking-wider text-floodlight-white">Live Feed</h2>
+            <p className="font-mono text-xs uppercase text-concrete-gray">Operational Intelligence</p>
           </div>
         </div>
       </div>
@@ -62,13 +62,13 @@ export function OperationalFeedWidget() {
         <button
           onClick={getBriefing}
           disabled={briefingLoading}
-          className="w-full py-2 bg-slate-800 hover:bg-slate-700 text-cyan-400 font-medium rounded-lg border border-slate-600 transition-colors text-sm flex justify-center items-center"
+          className="w-full py-3 bg-black hover:bg-black/70 text-signal-amber font-display text-xl uppercase tracking-wider border-2 border-concrete-gray/50 transition-colors flex justify-center items-center"
         >
-          {briefingLoading ? 'Generating AI Briefing...' : 'Generate Shift Briefing'}
+          {briefingLoading ? 'GENERATING...' : 'GENERATE SHIFT BRIEFING'}
         </button>
         {briefing && (
-          <div className="mt-3 p-3 bg-cyan-950/30 border border-cyan-900/50 rounded-lg text-sm text-cyan-100" aria-live="polite">
-            <h3 className="font-bold text-cyan-400 mb-1">AI Briefing</h3>
+          <div className="mt-3 p-3 bg-signal-amber/10 border-l-4 border-signal-amber text-sm text-floodlight-white font-sans font-bold" aria-live="polite">
+            <h3 className="font-mono text-signal-amber mb-1 uppercase tracking-widest text-xs">AI Briefing</h3>
             <p>{briefing}</p>
           </div>
         )}
@@ -76,15 +76,15 @@ export function OperationalFeedWidget() {
 
       <div className="flex-1 overflow-y-auto space-y-3 pr-2 custom-scrollbar">
         {feed.map(item => (
-          <div key={item.id} className="p-3 bg-slate-950 rounded-lg border border-slate-800 flex items-start space-x-3">
+          <div key={item.id} className="p-3 bg-black border-2 border-concrete-gray/30 flex items-start space-x-3">
             <div className="mt-0.5">
-              {item.type === 'alert' && <AlertTriangle size={16} className="text-amber-500" />}
-              {item.type === 'resolved' && <CheckCircle size={16} className="text-emerald-500" />}
-              {item.type === 'info' && <Info size={16} className="text-blue-400" />}
+              {item.type === 'alert' && <AlertTriangle size={16} className="text-signal-red" />}
+              {item.type === 'resolved' && <CheckCircle size={16} className="text-concrete-gray" />}
+              {item.type === 'info' && <Info size={16} className="text-signal-amber" />}
             </div>
             <div className="flex-1">
-              <p className="text-sm text-slate-300">{item.message}</p>
-              <p className="text-xs text-slate-500 mt-1">{item.time}</p>
+              <p className="font-sans text-floodlight-white font-medium text-sm">{item.message}</p>
+              <p className="font-mono text-xs text-concrete-gray mt-1 font-bold">{item.time}</p>
             </div>
           </div>
         ))}
