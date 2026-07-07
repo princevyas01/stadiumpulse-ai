@@ -1,25 +1,25 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { ai } from '@/lib/gemini'
-import { apiLimiter } from '@/lib/rate-limit'
+import { checkRateLimit } from '@/lib/rate-limit'
 import { sanitizeInput } from '@/lib/sanitize'
-import { z } from 'zod'
+import { incidentReportSchema } from '@/lib/schemas'
 
-const schema = z.object({
-  incident: z.string().min(1)
-})
+
 
 /**
  * Module
  */
-export async function POST(req: Request) {
-  const ip = req.headers.get('x-forwarded-for') ?? 'anonymous'
-  if (!apiLimiter.check(ip)) {
+export async function POST(req: NextRequest) {
+  const sessionId = req.cookies.get('sp_session')?.value ?? 'anonymous';
+  const ip = req.headers.get('x-forwarded-for') ?? 'anonymous';
+  const { allowed } = checkRateLimit(sessionId, ip);
+  if (!allowed) {
     return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
   }
 
   try {
     const body = await req.json()
-    const { incident } = schema.parse(body)
+    const { incident } = incidentReportSchema.parse(body)
     const sanitizedIncident = sanitizeInput(incident)
 
     const prompt = `You are the AI Incident Advisor for stadium operations. 

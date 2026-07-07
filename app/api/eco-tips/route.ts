@@ -1,6 +1,6 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { generateText } from '@/lib/gemini'
-import { apiLimiter } from '@/lib/rate-limit'
+import { checkRateLimit } from '@/lib/rate-limit'
 
 import { z } from "zod"
 const schema = z.object({})
@@ -8,10 +8,12 @@ const schema = z.object({})
 /**
  * Module
  */
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try { schema.parse(await req.json()) } catch {}
-  const ip = req.headers.get('x-forwarded-for') ?? 'anonymous'
-  if (!apiLimiter.check(ip)) {
+  const sessionId = req.cookies.get('sp_session')?.value ?? 'anonymous';
+  const ip = req.headers.get('x-forwarded-for') ?? 'anonymous';
+  const { allowed } = checkRateLimit(sessionId, ip);
+  if (!allowed) {
     return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
   }
 

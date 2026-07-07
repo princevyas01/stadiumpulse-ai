@@ -1,29 +1,20 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { streamText } from '@/lib/gemini'
-import { apiLimiter } from '@/lib/rate-limit'
+import { checkRateLimit } from '@/lib/rate-limit'
 import { sanitizeInput } from '@/lib/sanitize'
-import { z } from 'zod'
+import { chatMessageSchema } from '@/lib/schemas'
 
-const schema = z.object({
-  message: z.string().min(1),
-  history: z.array(z.object({
-    role: z.enum(['user', 'assistant']),
-    content: z.string()
-  })).optional()
-})
-
-/**
- * Module
- */
-export async function POST(req: Request) {
-  const ip = req.headers.get('x-forwarded-for') ?? 'anonymous'
-  if (!apiLimiter.check(ip)) {
+export async function POST(req: NextRequest) {
+  const sessionId = req.cookies.get('sp_session')?.value ?? 'anonymous';
+  const ip = req.headers.get('x-forwarded-for') ?? 'anonymous';
+  const { allowed } = checkRateLimit(sessionId, ip);
+  if (!allowed) {
     return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
   }
 
   try {
     const body = await req.json()
-    const { message, history } = schema.parse(body)
+    const { message, history } = chatMessageSchema.parse(body)
     const sanitizedMsg = sanitizeInput(message)
 
     let historyText = ''

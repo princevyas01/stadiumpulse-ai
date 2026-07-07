@@ -1,17 +1,17 @@
 import { describe, it, expect } from 'vitest'
-import { RateLimiter } from '../lib/rate-limit'
+import { checkRateLimit } from '../lib/rate-limit'
 
 describe('RateLimiter', () => {
-  it('should allow requests within capacity', () => {
-    const limiter = new RateLimiter(5, 1)
-    expect(limiter.check('ip1')).toBe(true)
-    expect(limiter.check('ip1')).toBe(true)
+  it('allows requests within capacity', () => {
+    const result1 = checkRateLimit('sess-1', '1.1.1.1')
+    expect(result1.allowed).toBe(true)
   })
 
-  it('should block requests exceeding capacity instantly', () => {
-    const limiter = new RateLimiter(2, 1)
-    expect(limiter.check('ip2')).toBe(true)
-    expect(limiter.check('ip2')).toBe(true)
-    expect(limiter.check('ip2')).toBe(false)
+  it('blocks requests over capacity', () => {
+    let result = { allowed: true }
+    for (let i = 0; i < 21; i++) {
+      result = checkRateLimit('sess-2', '2.2.2.2')
+    }
+    expect(result.allowed).toBe(false)
   })
 })

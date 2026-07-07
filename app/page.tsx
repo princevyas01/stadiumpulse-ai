@@ -52,6 +52,12 @@ export default function Home() {
           </Link>
         </div>
         
+        <div className="flex justify-center mt-8">
+          <Link href="/organizer" className="font-mono text-sm uppercase tracking-wide underline hover:text-theme-accent transition-colors">
+            Organizer
+          </Link>
+        </div>
+        
         <footer className="text-sm text-theme-text-secondary text-center pt-8 border-t border-black/10">
           * Non-affiliated concept demo. Not associated with FIFA.
         </footer>

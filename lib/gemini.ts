@@ -69,3 +69,20 @@ export async function streamText(prompt: string): Promise<ReadableStream> {
     throw new Error("Failed to stream content");
   }
 }
+
+export async function generateExecutiveBriefing(stats: import("./mock-data").TournamentAggregateStats) {
+  const prompt = `You are writing a 10-second executive briefing for tournament organizers overseeing a Global Soccer Tournament 2026 host stadium.
+
+Current stats:
+- Estimated attendance: ${stats.totalAttendanceEstimate}
+- Average crowd density: ${stats.averageCrowdDensityPercent}%
+- Active incidents: ${stats.activeIncidentCount}
+- Waste diverted: ${stats.sustainability.wasteDivertedPercent}%
+- Energy usage: ${stats.sustainability.energyUsageKwh} kWh
+- Water usage: ${stats.sustainability.waterUsageLiters} L
+
+Write a plain-language executive summary in 3-5 sentences, no bullet points, no markdown, that an organizer could read in 10 seconds before a decision meeting. Flag anything that needs attention. Interpret the numbers, don't just restate them.`;
+
+  const text = await generateText(prompt);
+  return { text };
+}
