@@ -19,13 +19,13 @@ export function ResourceAllocationChart({ gateShuttleGap }: Props) {
             <XAxis dataKey="gateId" fontSize={12} stroke="#888888" />
             <YAxis fontSize={12} stroke="#888888" />
             <Tooltip />
-            <Bar dataKey="projectedDemand" fill="#3b82f6" radius={[4, 4, 0, 0]} name="Demand" />
-            <Bar dataKey="currentCapacity" fill="#10b981" radius={[4, 4, 0, 0]} name="Capacity" />
+            <Bar dataKey="projectedDemand" fill="#B8823A" radius={[4, 4, 0, 0]} name="Demand" />
+            <Bar dataKey="currentCapacity" fill="#4A7A5E" radius={[4, 4, 0, 0]} name="Capacity" />
           </BarChart>
         </ResponsiveContainer>
       </div>
       {flagged && (
-        <p className="text-sm mt-4 font-medium text-red-500">
+        <p className="text-sm mt-4 font-medium text-theme-alert-red">
           ⚠️ {flagged.gateId} shuttle capacity is {flagged.gapPercent}% below projected demand.
         </p>
       )}

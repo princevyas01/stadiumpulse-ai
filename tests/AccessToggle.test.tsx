@@ -15,16 +15,13 @@ describe('AccessToggle', () => {
     expect(screen.getByRole('button', { name: /Request Mobility Assistance/i })).toBeInTheDocument()
   })
 
-  it('triggers alert on mobility assistance', () => {
-    const alertMock = vi.spyOn(window, 'alert').mockImplementation(() => {})
+  it('shows an accessible toast on mobility assistance request', () => {
     render(
       <AccessibilityProvider>
         <AccessToggle />
       </AccessibilityProvider>
     )
-    
     fireEvent.click(screen.getByRole('button', { name: /Request Mobility Assistance/i }))
-    expect(alertMock).toHaveBeenCalled()
-    alertMock.mockRestore()
+    expect(screen.getByRole('status')).toHaveTextContent(/Mobility assistance requested/i)
   })
 })

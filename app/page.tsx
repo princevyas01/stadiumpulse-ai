@@ -14,7 +14,7 @@ export default function Home() {
             StadiumPulse AI
           </h1>
           <p className="text-theme-text-secondary text-lg md:text-xl max-w-2xl mx-auto font-medium">
-            Next-generation operations and fan experience platform for the Global Soccer Tournament 2026.
+            Next-generation operations and fan experience platform for the FIFA World Cup 2026.
           </p>
         </div>
 

@@ -3,16 +3,7 @@
 import { useMemo, useState, useEffect } from 'react'
 import { Activity, AlertTriangle } from 'lucide-react'
 
-// Simulated lightweight pseudo-random walk for crowd density
-function generateCrowdData() {
-  const regions = ['Gate A', 'Gate B', 'Gate C', 'Concourse North', 'Concourse South', 'Food Court', 'Merch Store']
-  return regions.map(name => ({
-    name,
-    density: Math.floor(Math.random() * 100),
-    x: Math.random() * 80 + 10,
-    y: Math.random() * 80 + 10
-  }))
-}
+import { generateCrowdData } from '@/lib/mock-data'
 
 /**
  * CrowdMapWidget

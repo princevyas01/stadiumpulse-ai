@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from 'react'
+import { getCsrfToken } from '@/lib/getCsrfToken'
 import { AlertOctagon, Send, Loader2 } from 'lucide-react'
 
 /**
@@ -19,7 +20,7 @@ export function IncidentAdvisorWidget() {
     try {
       const res = await fetch('/api/incident', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-csrf-token': getCsrfToken() },
         body: JSON.stringify({ incident })
       })
       if (!res.ok) throw new Error('Failed to fetch')

@@ -1,4 +1,4 @@
-# StadiumPulse AI — GenAI Command Center for Global Soccer Tournament 2026
+# StadiumPulse AI — GenAI Command Center for FIFA World Cup 2026
 
 ### Root Challenge
 Mega-event stadiums like a FIFA World Cup 2026 host venue face a coordination problem across four distinct groups operating on different timescales: fans need moment-to-moment guidance, volunteers/staff need shift-level operational awareness, and organizers need tournament-wide strategic visibility — all in real time, across multiple languages, at a scale no single team can track manually. StadiumPulse AI addresses this by giving each group a GenAI-powered view scoped to what they actually need to decide or act on.
@@ -19,7 +19,7 @@ Mega-event stadiums like a FIFA World Cup 2026 host venue face a coordination pr
 - Real-time decision support — AI Incident Advisor + Organizer resource allocation recommendations
 
 ## Solution Overview
-**StadiumPulse AI** is a three-portal web application (Fan Portal, Ops Command Center, Organizer Command View) powered by Gemini 2.0 Flash. It addresses all 8 problem-statement pillars by delivering real-time, AI-driven insights and interactive features for the fictional Global Soccer Tournament 2026 host stadium (MetLife Stadium, NJ).
+**StadiumPulse AI** is a three-portal web application (Fan Portal, Ops Command Center, Organizer Command View) powered by Gemini 2.0 Flash. It addresses all 8 problem-statement pillars by delivering real-time, AI-driven insights and interactive features for the fictional FIFA World Cup 2026 host stadium (MetLife Stadium, NJ).
 
 | Pillar | Feature | Portal |
 |---|---|---|
@@ -64,4 +64,4 @@ graph TD
 - **Accessibility**: Covered in `tests/accessibility.test.tsx` using `jest-axe`.
 
 ## Disclaimer
-*This is a fictional concept project built for a hackathon. It is not affiliated with FIFA, the Global Soccer Tournament 2026, or MetLife Stadium.*
+*This is a fictional concept project built for a hackathon. It is not affiliated with FIFA, the FIFA World Cup 2026, or MetLife Stadium.*

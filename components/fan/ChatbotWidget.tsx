@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect } from 'react'
+import { getCsrfToken } from '@/lib/getCsrfToken'
 import { Send, Bot, Loader2, Globe } from 'lucide-react'
 
 type Message = { id: string; role: 'user' | 'assistant'; content: string }
@@ -36,7 +37,7 @@ export function ChatbotWidget() {
     try {
       const res = await fetch('/api/chat', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-csrf-token': getCsrfToken() },
         body: JSON.stringify({ message: userMsg.content, history: messages.slice(-4) })
       })
       if (!res.ok || !res.body) throw new Error('Failed to fetch')

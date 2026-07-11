@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from 'react'
+import { getCsrfToken } from '@/lib/getCsrfToken'
 import { Leaf, RefreshCcw } from 'lucide-react'
 
 /**
@@ -25,7 +26,7 @@ export function SustainabilityWidget() {
   const getTip = async () => {
     setLoading(true)
     try {
-      const res = await fetch('/api/eco-tips', { method: 'POST' })
+      const res = await fetch('/api/eco-tips', { method: 'POST', headers: { 'x-csrf-token': getCsrfToken() } })
       if (!res.ok) throw new Error('Failed to fetch')
       const data = await res.json()
       setTip(data.tip)

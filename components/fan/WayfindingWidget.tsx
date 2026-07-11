@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from 'react'
+import { getCsrfToken } from '@/lib/getCsrfToken'
 import { MapPin, Search, ArrowRight, Loader2 } from 'lucide-react'
 import { useDebounce } from '@/hooks/useDebounce'
 
@@ -24,7 +25,7 @@ export function WayfindingWidget() {
       try {
         const res = await fetch('/api/wayfinding', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'x-csrf-token': getCsrfToken() },
           body: JSON.stringify({ query: debouncedQuery })
         })
         if (!res.ok) throw new Error('Failed to fetch directions')

@@ -1,18 +1,10 @@
 "use client"
 
 import { useState, useEffect } from 'react'
+import { getCsrfToken } from '@/lib/getCsrfToken'
 import { RadioReceiver, AlertTriangle, CheckCircle, Info } from 'lucide-react'
 
-type FeedItem = { id: string; type: 'alert' | 'info' | 'resolved'; message: string; time: string }
-
-function generateFeed(): FeedItem[] {
-  const now = new Date()
-  return [
-    { id: '1', type: 'alert', message: 'Density anomaly detected at Gate C', time: new Date(now.getTime() - 2 * 60000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) },
-    { id: '2', type: 'resolved', message: 'Medical request Sect 110 fulfilled', time: new Date(now.getTime() - 15 * 60000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) },
-    { id: '3', type: 'info', message: 'Shift Briefing: Match ends in 45m. Prep shuttles.', time: new Date(now.getTime() - 30 * 60000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) }
-  ]
-}
+import { generateFeed, type FeedItem } from '@/lib/mock-data'
 
 /**
  * OperationalFeedWidget
@@ -36,7 +28,7 @@ export function OperationalFeedWidget() {
   const getBriefing = async () => {
     setBriefingLoading(true)
     try {
-      const res = await fetch('/api/briefing', { method: 'POST' })
+      const res = await fetch('/api/briefing', { method: 'POST', headers: { 'x-csrf-token': getCsrfToken() } })
       if (!res.ok) throw new Error('Failed to fetch')
       const data = await res.json()
       setBriefing(data.briefing)

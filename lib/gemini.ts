@@ -71,7 +71,7 @@ export async function streamText(prompt: string): Promise<ReadableStream> {
 }
 
 export async function generateExecutiveBriefing(stats: import("./mock-data").TournamentAggregateStats) {
-  const prompt = `You are writing a 10-second executive briefing for tournament organizers overseeing a Global Soccer Tournament 2026 host stadium.
+  const prompt = `You are writing a 10-second executive briefing for tournament organizers overseeing a FIFA World Cup 2026 host stadium.
 
 Current stats:
 - Estimated attendance: ${stats.totalAttendanceEstimate}
@@ -85,4 +85,71 @@ Write a plain-language executive summary in 3-5 sentences, no bullet points, no 
 
   const text = await generateText(prompt);
   return { text };
+}
+
+import { NextRequest, NextResponse } from 'next/server'
+import type { ZodSchema } from 'zod'
+import { sanitizeInput } from './sanitize'
+import { checkRateLimit } from './rate-limit'
+import { verifyCsrfToken } from './csrf'
+
+interface GeminiRequestParams<TInput, TOutput> {
+  request: NextRequest
+  schema: ZodSchema<TInput>
+  buildPrompt: (input: TInput) => string
+  parseResponse: (text: string) => TOutput
+  requireCsrf?: boolean
+}
+
+/**
+ * handleGeminiRequest
+ * Shared pipeline for every AI-backed API route: CSRF check, rate limit,
+ * validate, sanitize, call Gemini, return typed response, generic error handling.
+ */
+export async function handleGeminiRequest<TInput, TOutput>({
+  request,
+  schema,
+  buildPrompt,
+  parseResponse,
+  requireCsrf = true,
+}: GeminiRequestParams<TInput, TOutput>): Promise<NextResponse> {
+  try {
+    if (requireCsrf) {
+      const cookieToken = request.cookies.get('sp_csrf')?.value
+      const headerToken = request.headers.get('x-csrf-token')
+      const csrfValid = cookieToken === headerToken && (await verifyCsrfToken(cookieToken))
+      if (!csrfValid) {
+        return NextResponse.json({ error: 'Invalid or missing CSRF token' }, { status: 403 })
+      }
+    }
+
+    const sessionId = request.cookies.get('sp_session')?.value ?? 'anonymous'
+    const ip = request.headers.get('x-forwarded-for') ?? 'unknown'
+    const { allowed } = checkRateLimit(sessionId, ip)
+    if (!allowed) {
+      return NextResponse.json({ error: 'Rate limit exceeded. Try again shortly.' }, { status: 429 })
+    }
+
+    const rawBody = await request.json().catch(() => ({}))
+    const parsed = schema.safeParse(rawBody)
+    if (!parsed.success) {
+      return NextResponse.json({ error: 'Invalid request' }, { status: 400 })
+    }
+
+    const sanitizedInput = Object.fromEntries(
+      Object.entries(parsed.data as Record<string, unknown>).map(([key, value]) => [
+        key,
+        typeof value === 'string' ? sanitizeInput(value) : value,
+      ])
+    ) as TInput
+
+    const prompt = buildPrompt(sanitizedInput)
+    const text = await generateText(prompt)
+    const result = parseResponse(text ?? '')
+
+    return NextResponse.json(result)
+  } catch (error) {
+    console.error('Gemini request error:', error instanceof Error ? error.message : 'unknown error')
+    return NextResponse.json({ error: 'Something went wrong. Please try again.' }, { status: 500 })
+  }
 }

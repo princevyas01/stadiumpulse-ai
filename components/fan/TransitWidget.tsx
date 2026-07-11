@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from 'react'
+import { getCsrfToken } from '@/lib/getCsrfToken'
 import { Train, Clock } from 'lucide-react'
 
 /**
@@ -13,7 +14,7 @@ export function TransitWidget() {
   const getRecommendation = async () => {
     setLoading(true)
     try {
-      const res = await fetch('/api/transit', { method: 'POST' })
+      const res = await fetch('/api/transit', { method: 'POST', headers: { 'x-csrf-token': getCsrfToken() } })
       if (!res.ok) throw new Error('Failed to fetch')
       const data = await res.json()
       setRecommendation(data.recommendation)
